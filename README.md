@@ -1,4 +1,4 @@
-# IntelliJ Live template
+# IntelliJ Live templates
 
 This project is a collection of IntelliJ Live templates for various Java libraries.
 
@@ -10,4 +10,4 @@ For now there is no importable version of them, maybe in the future.
 
 ## Contribution and support
 
-If you find any issues in any of the templates, please create a GitHub issue in this project.
+If you find any issues in any of the templates or you have a suggestion or request, please create a GitHub issue in this project.
