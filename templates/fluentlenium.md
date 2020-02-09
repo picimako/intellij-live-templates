@@ -1,6 +1,6 @@
 # FluentLenium
 
-## FluentWebElement field with @Findby
+## FluentWebElement field with @FindBy
     
 ```java
 @org.openqa.selenium.support.FindBy(css = "$SELECTOR$")
