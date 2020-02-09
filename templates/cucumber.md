@@ -110,3 +110,18 @@ becomes (within a class constructor)
 ```java
 Given("the {} user tries to edit the content named {string} {int} times", () -> {});
 ```
+
+## Tagged Hooks
+
+All of the following templates assume that a Scenario parameter is needed.
+
+| Annotation | Template |
+|---|---|
+| <pre>@Before</pre> | <pre>@io.cucumber.java.Before("$tags$")<br>public void beforeScenario(io.cucumber.core.api.Scenario scenario) {<br>    $code$<br>}</pre> |
+| <pre>@BeforeStep</pre> | <pre>@io.cucumber.java.BeforeStep("$tags$")<br>public void beforeStep(io.cucumber.core.api.Scenario scenario) {<br>    $code$<br>}</pre> |
+| <pre>@After</pre> | <pre>@io.cucumber.java.After("$tags$")<br>public void afterScenario(io.cucumber.core.api.Scenario scenario) {<br>    $code$<br>}</pre> |
+| <pre>@AfterStep</pre> | <pre>@io.cucumber.java.AfterStep("$tags$")<br>public void afterStep(io.cucumber.core.api.Scenario scenario) {<br>    $code$<br>}</pre> |
+
+### General configuration
+- Abbreviation: *before*, *beforestep*, *after*, *afterstep*
+- Options enabled: Reformat according to style, Use static import if possible, Shorten FQ names
