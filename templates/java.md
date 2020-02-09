@@ -8,7 +8,6 @@ java.util.Optional<$SELECTION$>
 
 ### General configuration
 - Abbreviation: *opt*
-- Scope: Java
 - Options enabled: Shorten FQ names
 
 ## Surround with Objects.requireNonNull

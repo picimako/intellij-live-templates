@@ -2,6 +2,8 @@
 
 This project is a collection of IntelliJ Live templates for various Java libraries.
 
+If not stated otherwise, the Scope of the templates are by default Java All.
+
 ## How to add them?
 
 You can assemble the templates manually in IntelliJ's **Settings > Editor > Live Templates**.
