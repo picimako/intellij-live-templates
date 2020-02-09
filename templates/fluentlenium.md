@@ -10,9 +10,7 @@ public org.fluentlenium.core.domain.FluentWebElement $ELEMENT_NAME$;
 ### General configuration
 - Abbreviation: *fluentwebelement*
 - Scope: Java
-- Other options enabled:
-    - Reformat according to style
-    - Shorten FQ names
+- Options enabled: Reformat according to style, Shorten FQ names
 
 ## FluentList field with @FindBy
 
@@ -24,6 +22,4 @@ public org.fluentlenium.core.domain.FluentList<org.fluentlenium.core.domain.Flue
 ### General configuration
 - Abbreviation: *fluentlist*
 - Scope: Java
-- Other options enabled:
-    - Reformat according to style
-    - Shorten FQ names
+- Options enabled: Reformat according to style, Shorten FQ names

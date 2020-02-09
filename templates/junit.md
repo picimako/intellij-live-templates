@@ -26,10 +26,7 @@ public void should$doSomething$() {
 ### General configuration
 - Abbreviation: *should*, *test*
 - Scope: Java - declaration
-- Other options enabled:
-    - Reformat according to style
-    - Use static import if possible
-    - Shorten FQ names
+- Options enabled: Reformat according to style, Use static import if possible, Shorten FQ names
 
 ## @Before and @BeforeClass annotated methods
 
@@ -50,10 +47,7 @@ public void beforeClass() {
 ### General configuration
 - Abbreviation: *before*, *beforeClass*, *setup*
 - Scope: Java - declaration
-- Other options enabled:
-    - Reformat according to style
-    - Use static import if possible
-    - Shorten FQ names
+- Options enabled: Reformat according to style, Use static import if possible, Shorten FQ names
 
 ## @After and @AfterClass annotated methods
 
@@ -74,10 +68,7 @@ public void afterClass() {
 ### General configuration
 - Abbreviation: *after*, *afterClass*, *teardown*
 - Scope: Java - declaration
-- Other options enabled:
-    - Reformat according to style
-    - Use static import if possible
-    - Shorten FQ names
+- Options enabled: Reformat according to style, Use static import if possible, Shorten FQ names
 
 ## Parameters method
 
@@ -94,7 +85,4 @@ public static Iterable<Object[]> parameters() {
 ### General configuration
 - Abbreviation: *parameters*
 - Scope: Java - declaration
-- Other options enabled:
-    - Reformat according to style
-    - Shorten FQ names
-0
+- Options enabled: Reformat according to style, Shorten FQ names

@@ -52,8 +52,7 @@ Given that a step description is copied to the clipboard from a Gherkin file, th
 ### General configuration
 - Abbreviation: *given*
 - Scope: Java
-- Other options enabled:
-    - Shorten FQ names
+- Options enabled: Shorten FQ names
 
 ### Example
 A step
