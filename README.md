@@ -13,7 +13,7 @@ For now there is no importable version of them, maybe in the future.
 ## Live template variables
 
 If you are interested in adding extra functionality to your live templates there is a (not yet comprehensive) guide about the functions that are available
-for the template variables. For the guide head to the [Template variable functions](templates/template_variable_functions/variable_functions.md) document.
+for the template variables. For the guide head to the [Template variable functions](templates/template_variable_functions/) folder.
 
 ## Contribution and support
 
