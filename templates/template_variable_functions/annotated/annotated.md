@@ -26,6 +26,9 @@ containing the names of the available `@Bean` annotated methods.
 
 ![annotated_bean](images/annotated_bean.png)
 
+If you combine the `annotated()` function with e.g. a function that does some kind of string manipulation (i.e. `snakeCase()`), this latter function gets
+automatically applied to the first item in the suggestions list without offering any suggestions.
+
 **Related macro:**
 - https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/AnnotatedMacro.java
 
