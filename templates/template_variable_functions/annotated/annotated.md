@@ -17,14 +17,14 @@ and setting the `$type$` variable's  to `annotated("org.springframework.stereoty
 template keyword the templates gets injected to the code and a suggestions list opens with all available `@Component` annotated
 types:
 
-![annotated_component](annotated/images/annotated_component.png)
+![annotated_component](images/annotated_component.png)
 
 **Example (Spring Beans):**
 
 The same template and configuration but targeting the `org.springframework.context.annotation.Bean` annotation will show a suggestion list
 containing the names of the available `@Bean` annotated methods.
 
-![annotated_bean](annotated/images/annotated_bean.png)
+![annotated_bean](images/annotated_bean.png)
 
 **Related macro:**
 - https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/AnnotatedMacro.java
