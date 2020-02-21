@@ -4,7 +4,9 @@ The documents in this folder summarize how functions that are available for Live
 
 The list of functions is according to the official documentation at [https://www.jetbrains.com/help/idea/template-variables.html](https://www.jetbrains.com/help/idea/template-variables.html).
 
-The related macros can be found at https://github.com/JetBrains/intellij-community/tree/master/java/java-impl/src/com/intellij/codeInsight/template/macro
+The related macros can be found at
+- https://github.com/JetBrains/intellij-community/tree/master/platform/lang-impl/src/com/intellij/codeInsight/template/macro
+- https://github.com/JetBrains/intellij-community/tree/master/java/java-impl/src/com/intellij/codeInsight/template/macro
 
 ## Notes
 
