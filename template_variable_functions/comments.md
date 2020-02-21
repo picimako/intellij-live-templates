@@ -8,8 +8,7 @@
 | Java | <pre>$start$<br><br><br>$end$</pre> | <pre>/\*<br><br><br>*/</pre> |
 | XML | <pre>$start$<br>$end$</pre> | <pre>\<!--<br>--></pre> |
 
-**Example built-in templates:**
-- ?
+**Related macros:** [CommentMacro.BlockCommentStart / CommentMacro.BlockCommentEnd](https://github.com/JetBrains/intellij-community/blob/master/platform/lang-impl/src/com/intellij/codeInsight/template/macro/CommentMacro.java)
 
 ## commentStart() / commentEnd()
 
@@ -20,8 +19,7 @@
 
 Since there is no line comment end indicator in Java, the `commendEnd()` function returns an empty string.
 
-**Example built-in templates:**
-- ?
+**Related macros:** [CommentMacro.AnyCommentStart / CommentMacro.AnyCommentEnd](https://github.com/JetBrains/intellij-community/blob/master/platform/lang-impl/src/com/intellij/codeInsight/template/macro/CommentMacro.java)
 
 ## lineCommentStart()
 
@@ -32,5 +30,4 @@ Since there is no line comment end indicator in Java, the `commendEnd()` functio
 
 In case of XML the function returns an empty string since there are no line comments in XML.
 
-**Example built-in templates:**
-- ?
+**Related macros:** [CommentMacro.LineCommentStart](https://github.com/JetBrains/intellij-community/blob/master/platform/lang-impl/src/com/intellij/codeInsight/template/macro/CommentMacro.java)
