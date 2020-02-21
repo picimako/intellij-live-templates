@@ -29,8 +29,7 @@ containing the names of the available `@Bean` annotated methods.
 If you combine the `annotated()` function with e.g. a function that does some kind of string manipulation (i.e. `snakeCase()`), this latter function gets
 automatically applied to the first item in the suggestions list without offering any suggestions.
 
-**Related macro:**
-- https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/AnnotatedMacro.java
+**Related macro:** [AnnotatedMacro](https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/AnnotatedMacro.java)
 
 **Articles:**
 - https://stackoverflow.com/questions/34786643/intellij-idea-live-template-annotated-variable-location/34788167#34788167
