@@ -22,8 +22,7 @@ public void thisIsAMethod(int[] intArray, String[] stringArray) {
 }
 ```
 
-using the keyword `itar` will work the following, suggesting all array variables at the first occurrence of the appropriate
-template variable:
+using the keyword `itar` will work the following, suggesting all array variables at the first occurrence of the appropriate template variable:
 
 ![arrayVariable_itar](images/arrayVariable.gif)
 
@@ -39,7 +38,7 @@ In case there is no array variable in the current scope, then the `$ARRAY$` vari
 
 Returns component type of an array.
 
-There are examples for this in the iterations group of the Live Templates. The example below is for the template called `itar` whose purpose is to **Iterate elements of array**:
+The example below is for the template called `itar` whose purpose is to **Iterate elements of array**:
 
 ```java
 for(int $INDEX$ = 0; $INDEX$ < $ARRAY$.length; $INDEX$++) {
@@ -58,7 +57,7 @@ public void thisIsAMethod(int[] intArray, String[] stringArray) {
 }
 ```
 
-using the keyword `itar` will work the following, automatically populating the `$ELEMENT_TYPE$` variable with the object type that the selected array can store:
+using the keyword `itar` will work the following, automatically populating the `$ELEMENT_TYPE$` variable with the type that the selected array can store:
 
 Although the inserted snippet uses the first available array and array type, upon selecting another array for the `$ARRAY$` variable, `$ELEMENT_TYPE$` also changes automatically. 
 
@@ -70,10 +69,56 @@ Although the inserted snippet uses the first available array and array type, upo
 
 Returns the type of an iterable component, such as an array or a collection.
 
+The example below is for the template called `iter` whose purpose is to **Iterate Iterable | Array**:
+
+```java
+for ($ELEMENT_TYPE$ $VAR$ : $ITERABLE_TYPE$) {
+  $END$
+}
+```
+
+Its `$ELEMENT_TYPE$` variable is configured to use this (`iterableComponentType()`) macro: `iterableComponentType(ITERABLE_TYPE)`.
+
+Given that there is at least one iterable in the current scope, e.g.:
+
+```java
+public void thisIsAMethod(List<String> strings, int[] integers) {
+}
+```
+
+using the keyword `iter` will work the following, automatically populating the `$ELEMENT_TYPE$` variable with the type that the selected iterable can store:
+
+![iterable_component_type_iter](images/iterableComponentType.gif)
+
 **Related macro:** [IterableComponentTypeMacro](https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/IterableComponentTypeMacro.java)
 
 ## iterableVariable()
 	
 Returns the name of a variable that can be iterated.
+
+The example below is for the template called `iter` whose purpose is to **Iterate Iterable | Array**:
+
+```java
+for ($ELEMENT_TYPE$ $VAR$ : $ITERABLE_TYPE$) {
+  $END$
+}
+```
+
+Its `$ITERABLE_TYPE$` variable is configured to use this (`iterableVariable()`).
+
+Given that there is at least one iterable in the current scope, e.g.:
+
+```java
+public void thisIsAMethod(List<String> strings, int[] integers) {
+}
+```
+
+using the keyword `iter` will work the following, suggesting all iterable variables:
+
+![iterable_variable_iter](images/iterableVariable.gif)
+
+In case there is no iterable variable in the current scope, then the `$ITERABLE_TYPE$` variable is not populated by default, one has to do it manually.
+
+![iterable_variable_no_iterable_iter](images/iterableVariable_no_iterable_in_scope.gif)
 
 **Related macro:** [IterableVariableMacro](https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/IterableVariableMacro.java)
