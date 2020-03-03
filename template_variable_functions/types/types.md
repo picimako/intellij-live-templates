@@ -8,7 +8,8 @@ Suggests a supertype for a Kotlin object expression.
 
 ## castToLeftSideType()
 
-Casts the right-side expression to the left-side expression type. It is used in the iterations group to have a single template for generating both raw-type and Generics Collections.
+Casts the right-side expression to the left-side expression type.
+It is used in the iterations group to have a single template for generating both raw-type and Generics Collections.
 
 **Related macro:** [CastToLeftSideTypeMacro](https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/CastToLeftSideTypeMacro.java)
 
@@ -16,11 +17,36 @@ Casts the right-side expression to the left-side expression type. It is used in 
 
 Returns the name of the current class (the class where the template is expanded).
 
+Let's say you need a static slf4j logger in your class fully initialized. A live template for that may look like this:
+
+```java
+private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger($CurrentClass$.class);
+```
+
+where the `getLogger()` method must be parameterized by the current class name.
+
+To populate that part automagically you can configure the Expression part of the `$CurrentClass$` variable to `className()`.
+That way the parameter will always take the name of the class the logger is placed in.
+
+![class_name](images/class_name.gif)
+
 **Related macro:** [ClassNameMacro](https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/ClassNameMacro.java)
 
 ## classNameComplete()
 	
 This expression substitutes for the class name completion at the variable position.
+
+Let's say you would like to insert a snippet of for validating whether an object is an instance of a type, via AssertJ.
+A live template might be:
+
+```java
+org.assertj.core.api.Assertions.assertThat($instance$).isInstanceOf($Class$.class);
+```
+
+If you configure the `$Class$` variables Expression with `classNameComplete()`, then suggestions are offered at the place of that variable for any kind of types
+including classes, interfaces, etc.
+
+![class_name](images/class_name_complete.gif)
 
 **Related macro:** [ClassNameCompleteMacro](https://github.com/JetBrains/intellij-community/blob/master/platform/lang-impl/src/com/intellij/codeInsight/template/macro/ClassNameCompleteMacro.java)
 
