@@ -4,8 +4,8 @@
 
 ```java
 @io.cucumber.java.en.Given("$step_pattern$")
-public void $method_name$() {
-    $code$
+public void $method_name$($params$) {
+    $END$
 }
 ```
 
