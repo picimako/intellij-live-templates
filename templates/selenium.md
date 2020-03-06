@@ -3,7 +3,7 @@
 ## WebElement with @FindBy
 
 ```java
-@org.openqa.selenium.support.FindBy(css = "$SELECTOR$")
+@org.openqa.selenium.support.FindBy($str$ = "$SELECTOR$")
 public org.openqa.selenium.WebElement $ELEMENT_NAME$;
 ```
 
@@ -11,16 +11,26 @@ public org.openqa.selenium.WebElement $ELEMENT_NAME$;
 - Abbreviation: *webelement*
 - Options enabled: Reformat according to style, Shorten FQ names
 
+### Variables configuration
+
+**$str$**:
+- Expression: `enum("css", "id", "className")` - Includes only the most used locator strategies.
+- Default value: `"css"`
+
 ## List with @FindBy
 
 ```java
-@org.openqa.selenium.support.FindBy(css = "$SELECTOR$")
+@org.openqa.selenium.support.FindBy($str$ = "$SELECTOR$")
 public java.util.List<org.openqa.selenium.WebElement> $ELEMENT_LIST_NAME$;
 ```
 
 ### General configuration
 - Abbreviation: *webelementlist*
 - Options enabled: Reformat according to style, Shorten FQ names
+
+**$str$**:
+- Expression: `enum("css", "id", "className")` - Includes only the most used locator strategies.
+- Default value: `"css"`
 
 ## By.cssSelector()
 
