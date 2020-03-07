@@ -24,7 +24,7 @@ public java.util.List<org.openqa.selenium.WebElement> $ELEMENT_LIST_NAME$;
 | General | Abbreviation: *webelementlist*<br>Options enabled: Reformat according to style, Shorten FQ names |
 | <pre>$str$</pre> | Expression: `enum("css", "id", "className")` - Includes only the most used locator strategies.<br>Default value: `"css"` |
 
-## By.cssSelector()
+## By.cssSelector/id/className()
 
 ```java
 final org.openqa.selenium.By $by$ = By.$strategy$("$selector$");
