@@ -7,15 +7,10 @@
 public org.openqa.selenium.WebElement $ELEMENT_NAME$;
 ```
 
-### General configuration
-- Abbreviation: *webelement*
-- Options enabled: Reformat according to style, Shorten FQ names
-
-### Variables configuration
-
-**$str$**:
-- Expression: `enum("css", "id", "className")` - Includes only the most used locator strategies.
-- Default value: `"css"`
+| Config | Config value |
+|---|---|
+| General | Abbreviation: *webelement*<br>Options enabled: Reformat according to style, Shorten FQ names |
+| <pre>$str$</pre> | Expression: `enum("css", "id", "className")` - Includes only the most used locator strategies.<br>Default value: `"css"` |
 
 ## List with @FindBy
 
@@ -24,23 +19,18 @@ public org.openqa.selenium.WebElement $ELEMENT_NAME$;
 public java.util.List<org.openqa.selenium.WebElement> $ELEMENT_LIST_NAME$;
 ```
 
-### General configuration
-- Abbreviation: *webelementlist*
-- Options enabled: Reformat according to style, Shorten FQ names
-
-**$str$**:
-- Expression: `enum("css", "id", "className")` - Includes only the most used locator strategies.
-- Default value: `"css"`
+| Config | Config value |
+|---|---|
+| General | Abbreviation: *webelementlist*<br>Options enabled: Reformat according to style, Shorten FQ names |
+| <pre>$str$</pre> | Expression: `enum("css", "id", "className")` - Includes only the most used locator strategies.<br>Default value: `"css"` |
 
 ## By.cssSelector()
 
 ```java
-final org.openqa.selenium.By $by$ = By.cssSelector("$selector$");
+final org.openqa.selenium.By $by$ = By.$strategy$("$selector$");
 ```
 
-As additional ones can also create templates for other locator strategies like `By.id()` and `By.className()` as well.
-
-### General configuration
-- Abbreviation: *by*, *bycss*
-- Scope: Java declaration
-- Options enabled: Shorten FQ names
+| Config | Config value |
+|---|---|
+| General | Abbreviation: *by*, *bycss*<br>Scope: Java declaration<br>Options enabled: Shorten FQ names |
+| <pre>$strategy$</pre> | Expression: `enum("cssSelector", "id", "className")` - Includes only the most used locator strategies.<br>Default value: `"cssSelector"` |
