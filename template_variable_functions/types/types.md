@@ -68,6 +68,22 @@ NOTE: The official documentation now includes this macro as `descendantClassEnum
 
 Returns a list of comma-separated strings suggested for completion when the template is expanded.
 
+Selenium's `By` type fields/variables might be a good candidate to demonstrate this macro. A template text might be the following:
+
+```java
+final org.openqa.selenium.By $by$ = By.$strategy$("$selector$");
+```
+
+One might configure the Expression part of `$strategy$` with `completeSmart()` which would provide suggestions for all available methods (locator strategies) under `By`. 
+However usually people only use a portion of these strategies so you may want to limit the number of suggested items that you can do with the `enum(...)` macro.
+
+You can define a list of Strings that will be populated into the suggestions list. In this case the list could be limited to cssSelector, id and className which three might be the three most commonly
+used ones.
+
+So, the Expression part of `$strategy$` will be. If you want to save time further you can also set the default value for this variable to your desired one, e.g. `"cssSelector"`.
+
+![class_name](images/enum.gif)
+
 **Related macro:** [EnumMacro](https://github.com/JetBrains/intellij-community/blob/master/platform/lang-impl/src/com/intellij/codeInsight/template/macro/EnumMacro.java)
 
 ## expectedType()
