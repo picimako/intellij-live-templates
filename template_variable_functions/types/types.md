@@ -30,6 +30,8 @@ That way the parameter will always take the name of the class the logger is plac
 
 ![class_name](images/class_name.gif)
 
+If the class has a generic parameter type as well, this macro won't insert that type, simply the name of the class.
+
 **Related macro:** [ClassNameMacro](https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/ClassNameMacro.java)
 
 ## classNameComplete()
@@ -101,6 +103,18 @@ Makes a guess on the type of elements stored in a java.util.Collection. To make 
 ## methodName()
 
 Returns the name of the method in which the template is expanded.
+
+Let's say you want to do some logging for a value which includes the current method's name. A template might be:
+
+```java
+LOGGER.info("Logging happened in method named: $method$");
+```
+
+Then you can configure the `$method$` variable's expression to call `methodName()`.
+
+In action it will work as below:
+
+![method_name](images/method_name.gif)
 
 **Related macro:** [MethodNameMacro](https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/MethodNameMacro.java)
 
