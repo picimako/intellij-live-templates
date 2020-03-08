@@ -84,7 +84,7 @@ used ones.
 
 So, the Expression part of `$strategy$` will be. If you want to save time further you can also set the default value for this variable to your desired one, e.g. `"cssSelector"`.
 
-![class_name](images/enum.gif)
+![enum](images/enum.gif)
 
 **Related macro:** [EnumMacro](https://github.com/JetBrains/intellij-community/blob/master/platform/lang-impl/src/com/intellij/codeInsight/template/macro/EnumMacro.java)
 
@@ -122,17 +122,78 @@ In action it will work as below:
 
 Returns the list of parameters of the method in which the template is expanded.
 
+This macro returns the list of parameter names only in the form of `[param1, param2, param3, ...]`. It doesn't return the parameter types.
+
+![method_parameters](images/method_parameters.gif)
+
+When the method the template is expanded in has no parameter then this macro will return `[]`.
+
+![method_parameters_no_params](images/method_parameters_no_params.gif)
+
 **Related macro:** [MethodParametersMacro](https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/MethodParametersMacro.java)
 
 ## methodReturnType()
 
 Returns the type of the value returned by the current method (in which the template is expanded).
 
+This macro returns the fully qualified name of the return type of the method. You can see some combinations below
+for return types and what the macro returns:
+
+- `void`: void
+- `String`: java.lang.String
+- `List<String>`: java.util.List<java.lang.String>
+- `List<T>`: java.util.List<T>
+- List< ? >: java.util.List<?>
+- `BiConsumer<String, String>`: java.util.function.BiConsumer<java.lang.String,java.lang.String>
+
+One potential use case may be that if there is a method with an actual return type,
+there might be a need for an object, maybe the result of some computation that will be returned. A template might be:
+
+```java
+$returnType$ result;
+$END$
+return result;
+```
+
+Then if you configure `$returnType$`'s Expression with `methodReturnType()` the template can used as following:
+
+![method_return_type](images/method_return_type.gif)
+
 **Related macro:** [MethodReturnTypeMacro](https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/MethodReturnTypeMacro.java)
 
 ## qualifiedClassName()
 
 Returns the fully qualified name of the current class (in which the template is expanded).
+
+For classes:
+
+```java
+package com.project;
+
+public class Converter {
+    
+    private static final class Properties {
+    }
+}
+```
+
+the `qualifiedClassName()` would return the following values:
+- `com.project.Converter` for Converter
+- `com.project.Converter.PonyProperties` for Properties
+
+Make sure that the **Shorten FQ names** option is not enabled because in that case this function produces the same result as the `className()` macro.
+
+For instance this macro may be used as part of a logger field initialization when passing the fully qualified name of the current class as a String.
+
+For that a template might be:
+
+```java
+private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger("$qualifiedClass$");
+```
+
+where `$qualifiedClass$`'s Expression is configured with `qualifiedClassName()`.
+
+![qualified_class_name](images/qualified_class_name.gif)
 
 **Related macro:** [QualifiedClassNameMacro](https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/QualifiedClassNameMacro.java)
 
