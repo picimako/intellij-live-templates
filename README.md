@@ -18,3 +18,6 @@ for the template variables. For the guides head to the [Template variable functi
 ## Contribution and support
 
 If you find any issues in any of the templates or you have a suggestion or request, please create a GitHub issue in this project.
+
+If you like my work and the contents of this repo, please consider buying me delicious coffee:
+<a href="https://www.buymeacoffee.com/picimako" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-white.png" alt="Buy Me A Coffee" style="height: 49px !important;width: 150px !important;" ></a>
