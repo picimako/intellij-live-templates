@@ -224,6 +224,6 @@ it returns an error message defined in the macro implementation, `com.intellij.c
 
 ## user()
 
-Returns the name of the current user.
+Returns the name of the current system user, more specifically the value of the `user.name` system property.
 
 **Related macro:** [CurrentUserMacro](https://github.com/JetBrains/intellij-community/blob/master/platform/lang-impl/src/com/intellij/codeInsight/template/macro/CurrentUserMacro.java)
