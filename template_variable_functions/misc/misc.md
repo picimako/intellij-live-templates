@@ -132,6 +132,29 @@ Doesn't suggest true, false, this, super.
 
 Suggests the name of an index variable from most commonly used ones: i, j, k, and so on (first one that is not used in the current scope).
 
+For this I'm going to use the built-in template called **fori**:
+
+```java
+for(int $INDEX$ = 0; $INDEX$ < $LIMIT$; $INDEX$++) {
+  $END$
+}
+```
+
+where the Expression part of `$INDEX$` is `suggestIndexName()`.
+
+The index suggestions start at **i** and goes all the way to **z**.
+
+![suggest_index_name_default](images/suggest_index_name_default.gif)
+
+In case the template (and along with that the macro) is invoked at a place where the outmost iterations index variable's name is "greater" (in terms of ASCII char index) than **i**,
+e.g. j, k and so on, the name suggestion starts at **i** again.
+
+![suggest_index_name_greater](images/suggest_index_name_greater.gif)
+
+If the template is invoked in an iteration where the index variable name is **z**, from that point on the next suggested variable name will always be an empty string.
+
+![suggest_index_name_beyond_z](images/suggest_index_name_beyond_z.gif)
+
 **Related macro:** [SuggestIndexNameMacro](https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/SuggestIndexNameMacro.java)
 
 ## suggestVariableName()
