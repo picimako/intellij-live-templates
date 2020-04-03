@@ -161,6 +161,36 @@ If the template is invoked in an iteration where the index variable name is **z*
 
 Suggests the name for a variable based on the variable type and its initializer expression...
 
+This example is based on the built-in template called **iter** whose template is:
+
+```java
+for ($ELEMENT_TYPE$ $VAR$ : $ITERABLE_TYPE$) {
+  $END$
+}
+```
+
+having the Expression part of `$VAR$` set to `suggestVariableName()`.
+
+In case the source iterable's name is in plural form, then the suggested variable's name is going to be in singular form: 
+ 
+![suggest_variable_name_plural](images/suggest_variable_name_plural.gif)
+
+Though not necessarily related, when there are multiple iterables suggested, the `suggestVariableName()` macro will always suggests
+a name according to the currently selected iterable.
+
+![suggest_variable_name_multiple_iterable](images/suggest_variable_name_multiple_iterable.gif)
+
+If the source iterable's name is not in plural the suggestion will either be a predefined name or the lowercase version of the
+variable's name.
+
+In certain cases when there would be name collision, the suggested variable name is indexed to make it unique.
+
+| Type | Suggested variable name |
+|---|---|
+| String | (Collection item type + collection name -> suggested variable name)<br>String + integer -> s<br>String + string -> s<br>String + strings -> string<br>String + s -> s1<br>String + s1 -> s |
+| Integer | <br>Integer + integer -> integer1<br>Integer + string -> integer<br>Integer + integers -> integer<br>Integer + i -> integer |
+| Custom types | the lowercase version of the type: AnAwesomeClassName -> anawesomeclassname |
+
 **Related macro:** [SuggestVariableNameMacro](https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/SuggestVariableNameMacro.java)
 
 ## time(sSystemTime)
