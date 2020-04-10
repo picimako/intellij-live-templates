@@ -124,7 +124,77 @@ NOTE: This is not included in the official documentation at the moment.
 
 ## suggestFirstVariableName(sFirstVariableName)
 
-Doesn't suggest true, false, this, super.
+Quoting from a related [JetBrains support ticket](https://intellij-support.jetbrains.com/hc/en-us/community/posts/360007850440-Live-template-How-does-suggestFirstVariableName-macro-work-) (kudos to Olga Klisho):
+
+> `suggestFirstVariableName` macro is the same as [`variableOfType`](../types/types.md#variableoftypetype), both suggest variables of the given type available in the context,
+> but the latter one also suggests "standard expressions" if they have a compatible type: "true", "false", "this" and "Outer.this".
+
+> The arguments can look like `"double"` or `"java.util.Collection"` or other macros, e.g. `methodReturnType()`
+> which returns the return type of the method where the caret is positioned.
+
+### Primitive types
+
+Primitive types can be specified by their names as the macro's parameter, like: `suggestFirstVariableName("short")`.
+
+Let's say you have the index of some special days stored in `short` type fields, and with a live template you'd like to
+create `short` variables with name suggestions.
+
+```java
+short $aSpecialDay$ = $day$;
+```
+
+Then you can configure the `$day$` variable's Expression as `suggestFirstVariableName("short")`.
+
+In case of specifying a primitive type as the parameter of this macro, the suggestions list
+will show variables of their respective non-primitive types as well (including `java.lang.Void` for the keyword `void`).
+
+![suggestFirstVariableName_primitives_incl_non_primitive](images/suggestFirstVariableName_primitives_incl_non_primitive.gif)
+
+### Non-primitive types
+
+Let's say you are doing UI test automation with Selenium, and you have a bunch of Page Object classes that all extend a base class.
+
+This base class has a method with which you can query a custom HTML attribute in your application, from a `WebElement` , in a more readable way:
+
+```java
+public String customDataAttrOf(WebElement element) {
+    //return custom attribute value from 'element'
+}
+```
+
+If you create a template for inserting this method e.g.:
+
+```java
+customDataAttrOf($WebElement$);
+```
+
+you can also configure the `$WebElement$` variable's Expression to be `suggestFirstVariableName("org.openqa.selenium.WebElement")` so that when inserted,
+all the WebElement type variable names are shown as suggestions.
+
+Variable names with the specified type are collected from super classes as well.
+
+![suggestFirstVariableName_object_type](images/suggestFirstVariableName_non_primitive_type.gif)
+
+If you pass a type into the macro but not with its fully qualified name, e.g. `"WebElement"` instead of `"org.openqa.selenium.WebElement"`, and you have
+a custom type with the same name, then upon insertion, the suggestions will show variables only whose type is actually imported into the current class.
+
+When you are aware of that multiple types with the same name might exist and be available in your project, it might be better to use fully qualified names,
+otherwise the simple name of the type may be more feasible.
+
+![suggestFirstVariableName_object_type_not_fully_qualified_name](images/suggestFirstVariableName_non_primitive_type_not_fully_qualified_name.gif) 
+
+### Macros
+
+Other macros that return a type can also be specified as the parameter of this macro, so that this one will suggest variable names
+according to the returned type.
+
+One example is [`methodReturnType()`](../types/types.md#methodreturntype), in which case the Expression will be `suggestFirstVariableName(methodReturnType())` when configured in a template variable.
+
+In case it doesn't find a variable with the returned type, then the suggestions list will be empty.
+
+### Edge cases
+
+This macro accepts exactly one parameter, so either there is no parameter, or multiple parameters specified the suggesstions list will be ewmpty. 
 
 **Related macro:** [SuggestFirstVariableNameMacro](https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/SuggestFirstVariableNameMacro.java)
 
