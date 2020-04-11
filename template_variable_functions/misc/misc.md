@@ -194,7 +194,7 @@ In case it doesn't find a variable with the returned type, then the suggestions 
 
 ### Edge cases
 
-This macro accepts exactly one parameter, so either there is no parameter, or multiple parameters specified the suggesstions list will be ewmpty. 
+This macro accepts exactly one parameter, so either there is no parameter, or multiple parameters specified the suggestions list will be ewmpty.
 
 **Related macro:** [SuggestFirstVariableNameMacro](https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/SuggestFirstVariableNameMacro.java)
 
