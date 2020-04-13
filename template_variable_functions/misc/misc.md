@@ -116,9 +116,64 @@ Considering that the live template is invoked in the 11th line, the results woul
 
 **Related macro:** [LineNumberMacro](https://github.com/JetBrains/intellij-community/blob/master/platform/lang-impl/src/com/intellij/codeInsight/template/macro/LineNumberMacro.java)
 
-## showParameterInfo
+## showParameterInfo()
 
 NOTE: This is not included in the official documentation at the moment.
+
+While you are defining the parameters passed to a method or an annotation, a little tooltip on top of the parameter list is displayed with all the signatures that match the current state of passed parameters.
+In some cases all signatures or options are shown but the most relevant to the typed text is highlighted in that list.
+
+The tooltip cannot be interacted with, so for example your cannot select a signature/option from that list to pre-populate the required number of parameter separator commas.
+
+### Annotation parameters
+
+In case of one annotation attribute it doesn't matter if you use a single template variable for the whole value (including the attribute name),
+or define the attribute name and its value separately, the tooltip is displayed regardless. Below are two examples for a single annotation attribute. 
+
+#### One attribute
+```java
+@org.openqa.selenium.support.FindBy($strategy$)
+org.openqa.selenium.WebElement $element$;
+```
+
+![showParameterInfo_annotation_one_param](images/showParameterInfo_annotation_one_param.GIF)
+
+```java
+@org.openqa.selenium.support.FindBy(css = $locator$)
+org.openqa.selenium.WebElement $element$;
+```
+
+![showParameterInfo_annotation_one_param_attribute](images/showParameterInfo_annotation_one_param_attribute.GIF)
+
+#### Multiple attributes
+In case of multiple annotation attributes (and template variables), the parameter info tooltip is displayed only when you start defining the value of the template variable
+this macro is added to. From that point on, it is displayed for any further attributes.
+
+```java
+@io.cucumber.junit.CucumberOptions(tags = "$tags$", features = "$features$")
+```
+
+![showParameterInfo_annotation_multiple_params](images/showParameterInfo_annotation_multiple_params.GIF)
+
+### Method call parameters
+
+In case of method call parameters this macro behaves the same way as it behaves in case of annotations.
+
+```java
+List<String> items = java.util.List.copyOf($params$);
+```
+
+![showParameterInfo_method_one_param](images/showParameterInfo_method_one_param.GIF)
+
+In case of multiple parameters:
+> ... (and template variables), the parameter info tooltip is displayed only when you start defining the value of the template variable
+  this macro is added to. From that point on, it is displayed for any further parameters.
+
+```java
+List<String> items = java.util.List.of($params$, $param2$);
+```
+
+![showParameterInfo_method_multiple_params](images/showParameterInfo_method_multiple_params.GIF)
 
 **Related macro:** [ShowParameterInfoMacro](https://github.com/JetBrains/intellij-community/blob/master/platform/lang-impl/src/com/intellij/codeInsight/template/macro/ShowParameterInfoMacro.java)
 
