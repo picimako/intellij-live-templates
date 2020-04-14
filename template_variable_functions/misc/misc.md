@@ -175,6 +175,8 @@ List<String> items = java.util.List.of($params$, $param2$);
 
 ![showParameterInfo_method_multiple_params](images/showParameterInfo_method_multiple_params.GIF)
 
+**Related Bug ticket:** [showParameterInfo() macro tooltip causes the red rectangle to not appear](https://youtrack.jetbrains.com/issue/IDEA-237488)
+
 **Related macro:** [ShowParameterInfoMacro](https://github.com/JetBrains/intellij-community/blob/master/platform/lang-impl/src/com/intellij/codeInsight/template/macro/ShowParameterInfoMacro.java)
 
 ## suggestFirstVariableName(sFirstVariableName)
