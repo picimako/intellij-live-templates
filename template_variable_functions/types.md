@@ -222,7 +222,7 @@ If you pass an empty string "" as the parameter, the function suggests all varia
 
 Quoting from a related [JetBrains support ticket](https://intellij-support.jetbrains.com/hc/en-us/community/posts/360007850440-Live-template-How-does-suggestFirstVariableName-macro-work-) (kudos to Olga Klisho):
 
-> [`suggestFirstVariableName`](../misc/misc.md#suggestfirstvariablenamesfirstvariablename) macro is the same as `variableOfType`, both suggest variables of the given type available in the context,
+> [`suggestFirstVariableName`](misc.md#suggestfirstvariablenamesfirstvariablename) macro is the same as `variableOfType`, both suggest variables of the given type available in the context,
 > but the latter one also suggests "standard expressions" if they have a compatible type: "true", "false", "this" and "Outer.this".
 
 > The arguments can look like `"double"` or `"java.util.Collection"` or other macros, e.g. `methodReturnType()`
@@ -284,7 +284,7 @@ otherwise the simple name of the type may be more feasible.
 Other macros that return a type can also be specified as the parameter of this macro, so that this one will suggest variable names
 according to the returned type.
 
-One example is [`methodReturnType()`](../types/types.md#methodreturntype), in which case the Expression will be `variableOfType(methodReturnType())` when configured in a template variable.
+One example is [`methodReturnType()`](types.mdturntype), in which case the Expression will be `variableOfType(methodReturnType())` when configured in a template variable.
 
 In case it doesn't find a variable with the returned type, then the suggestions list will be empty.
 
