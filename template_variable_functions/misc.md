@@ -99,7 +99,7 @@ it returns an error message defined in the macro implementation, `com.intellij.c
 
 ## groovyScript("groovy code", arg1)
 
-Evaluates the provided Groovy script with optional input parameters.
+Executes the Groovy script passed as a string.
 
 ### Return a single value
 
@@ -111,6 +111,14 @@ groovyScript("'groovy code'")
 ```
 
 It returns the String `groovy code`.
+
+### Path to Groovy file
+
+The first parameter of the macro may not just be actual code to execute, but also a path to the file that contains the script.
+
+The underlying logic uses `java.io.File` to handle the input as a file, so whatever input it accepts should work as an input for the `groovyScript()` macro.
+
+Absolute path: `groovyScript("E:\\livetemplates\\src\\main\\java\\picimako\\sandbox\\AGroovyClass.groovy")`
 
 ### Escaping
 
