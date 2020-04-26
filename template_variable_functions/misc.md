@@ -236,14 +236,14 @@ or define the attribute name and its value separately, the tooltip is displayed 
 org.openqa.selenium.WebElement $element$;
 ```
 
-![showParameterInfo_annotation_one_param](images/showParameterInfo_annotation_one_param.GIF)
+![showParameterInfo_annotation_one_param](images/showParameterInfo_annotation_one_param.gif)
 
 ```java
 @org.openqa.selenium.support.FindBy(css = $locator$)
 org.openqa.selenium.WebElement $element$;
 ```
 
-![showParameterInfo_annotation_one_param_attribute](images/showParameterInfo_annotation_one_param_attribute.GIF)
+![showParameterInfo_annotation_one_param_attribute](images/showParameterInfo_annotation_one_param_attribute.gif)
 
 #### Multiple attributes
 In case of multiple annotation attributes (and template variables), the parameter info tooltip is displayed only when you start defining the value of the template variable
@@ -253,7 +253,7 @@ this macro is added to. From that point on, it is displayed for any further attr
 @io.cucumber.junit.CucumberOptions(tags = "$tags$", features = "$features$")
 ```
 
-![showParameterInfo_annotation_multiple_params](images/showParameterInfo_annotation_multiple_params.GIF)
+![showParameterInfo_annotation_multiple_params](images/showParameterInfo_annotation_multiple_params.gif)
 
 ### Method call parameters
 
@@ -263,7 +263,7 @@ In case of method call parameters this macro behaves the same way as it behaves 
 List<String> items = java.util.List.copyOf($params$);
 ```
 
-![showParameterInfo_method_one_param](images/showParameterInfo_method_one_param.GIF)
+![showParameterInfo_method_one_param](images/showParameterInfo_method_one_param.gif)
 
 In case of multiple parameters:
 > ... (and template variables), the parameter info tooltip is displayed only when you start defining the value of the template variable
@@ -273,7 +273,7 @@ In case of multiple parameters:
 List<String> items = java.util.List.of($params$, $param2$);
 ```
 
-![showParameterInfo_method_multiple_params](images/showParameterInfo_method_multiple_params.GIF)
+![showParameterInfo_method_multiple_params](images/showParameterInfo_method_multiple_params.gif)
 
 **Related Bug ticket:** [showParameterInfo() macro tooltip causes the red rectangle to not appear](https://youtrack.jetbrains.com/issue/IDEA-237488)
 
