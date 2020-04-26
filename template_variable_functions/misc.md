@@ -194,6 +194,10 @@ So the following macro won't work, it will return an error message:
 - [Javadoc formatting and throws clause](https://intellij-support.jetbrains.com/hc/en-us/community/posts/360003143400-live-templates-method-format-question)
 - [Classpath settings and availability](https://intellij-support.jetbrains.com/hc/en-us/community/posts/206151709-What-is-or-where-is-the-internal-classpath-supplied-to-the-groovyScript-runtime-in-Live-Templates-)
 
+**Stackoverflow:**
+- [Current file path in Live Template](https://stackoverflow.com/questions/38488564/current-file-path-in-live-template)
+- [Relative file path parameter value](https://stackoverflow.com/questions/32998389/intellij-idea-live-templates-variable-run-groovy-script-relation-file-path)
+
 **Built-in templates using the groovyScript macro:**
 - output / soutp ([Related Stackoverflow post](https://stackoverflow.com/questions/1440525/idea-live-template-to-log-method-args/21168027#21168027))
 
