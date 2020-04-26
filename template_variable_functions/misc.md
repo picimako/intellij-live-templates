@@ -99,7 +99,95 @@ it returns an error message defined in the macro implementation, `com.intellij.c
 
 ## groovyScript("groovy code", arg1)
 
-Returns a Groovy script with the specified code.
+Evaluates the provided Groovy script with optional input parameters.
+
+### Return a single value
+
+In its simplest form you can return a single value from the script. Although it might not make sense in certain cases,
+it is good for demonstration purposes.
+
+```groovy
+groovyScript("'groovy code'")
+```
+
+It returns the String `groovy code`.
+
+### Escaping
+
+In case there is a more complex Groovy script provided to the macro it might contain additional quotation that has to be escaped
+due to the quotation marks of the macro input parameter. For example in case of wanting to use the literal `"` character:
+
+```groovy
+groovyScript("return '\"groovy code\"'")
+```
+
+It returns `"groovy code"`.
+
+### Multiline scripts
+
+It is inevitable to write multiline scripts, but it somehow has to be passed into the macro. The easiest way to do that is to end each statement
+with a semicolon and separate it from the next line with a whitespace.
+
+```groovy
+groovyScript("def thisIs = 'This is'; def sparta = 'Spartaaaaa...'; return thisIs + ' ' + sparta;")
+```
+
+It returns `This is Spartaaaaa...`.
+
+### Parameters
+
+It is also possible to pass in optional input parameters to the script. Those parameters might be literal values or other macros
+that evaluate to some (not necessarily primitive) values.
+
+The input parameters are indexed and can be reached as follows: `_1`, `_2`, `_3` and so on for the first, seconds, third and so on
+parameters accordingly. Parameter indexing starts from 1 instead of 0 (since the 0th parameter is the script itself).
+
+```groovy
+groovyScript("return _1 + _2", "Conca", "tenated")
+```
+
+If, for instance, the input parameter evaluates to a list, you can reach each of its elements by querying them by their indexes:
+
+```groovy
+groovyScript("return _1[2] + ' ' + _1[1] + ' ' + _1[0]", methodParameters())
+```
+
+Apparently this macro doesn't handle literal values other than Strings. Although it is possible to pass in literal int, boolean and
+other values, it handles them as an empty value.
+
+This is not the case when you pass in a macro that evaluates to an int, boolean, etc.
+
+```groovy
+groovyScript("return 'Current line number: ' + _1;", lineNumber())
+```
+
+### _editor variable
+
+There is a designated variable called `_editor` that holds an instance of [`com.intellij.openapi.editor.Editor`](https://github.com/JetBrains/intellij-community/blob/master/platform/editor-ui-api/src/com/intellij/openapi/editor/Editor.java).
+
+Via this variable you can access a lot of extra information about the editor, the project, etc.
+
+You can see this variable in action in the built-in template, **output / soutp**.
+
+### Caveats
+
+- Live templates in general, and the `groovyScript()` macro [cannot be used in File and Code templates](https://intellij-support.jetbrains.com/hc/en-us/community/posts/206155379-How-to-show-24-hour-format-time).
+- Other Live template macros [cannot be called/referenced inside the macro script](https://intellij-support.jetbrains.com/hc/en-us/community/posts/206286559-Any-Live-Templates-groovyScript-examples), it is only their values that can be passed in as parameters.
+So the following macro won't work, it will return an error message:
+
+    ```groovy
+    groovyScript("return 'Current line number: ' + lineNumber();")
+    ```
+
+### Other resources 
+
+**JetBrains support discussions:**
+- [groovyScript() as parameter of a groovyScript()](https://intellij-support.jetbrains.com/hc/en-us/community/posts/206491509-Is-there-a-way-to-use-an-environment-variable-in-a-live-template-script-path-)
+- [Javadoc formatting and throws clause](https://intellij-support.jetbrains.com/hc/en-us/community/posts/360003143400-live-templates-method-format-question)
+- [Classpath settings and availability](https://intellij-support.jetbrains.com/hc/en-us/community/posts/206151709-What-is-or-where-is-the-internal-classpath-supplied-to-the-groovyScript-runtime-in-Live-Templates-)
+
+**Built-in templates using the groovyScript macro:**
+- output / soutp ([Related Stackoverflow post](https://stackoverflow.com/questions/1440525/idea-live-template-to-log-method-args/21168027#21168027))
 
 **Related macro:** [GroovyScriptMacro](https://github.com/JetBrains/intellij-community/blob/master/platform/lang-impl/src/com/intellij/codeInsight/template/macro/GroovyScriptMacro.java)
 
@@ -107,7 +195,7 @@ Returns a Groovy script with the specified code.
 
 Returns the line number at which the associated template parameter is positioned after invoking the live template.
 
-Considering that the live template is invoked in the 11th line, the results would be the following:
+Considering that the live template is invoked in line 11, the results would be the following:
 
 | Template | Result  |
 |---|---|
