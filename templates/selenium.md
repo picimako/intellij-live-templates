@@ -36,4 +36,4 @@ final org.openqa.selenium.By $by$ = By.$strategy$("$selector$");
 |---|---|
 | General | Abbreviation: *by*, *bycss*<br>Scope: Java declaration<br>Options enabled: Shorten FQ names |
 | <pre>$strategy$</pre> | Expression: `enum("cssSelector", "id", "className")`<br>Default value: `"cssSelector"` |
-|  | $str$ includes only the most used locator strategies.<br>You can also use `completeSmart()` if you'd like to have all available methods suggested. |
+|  | `$strategy$` includes only the most used locator strategies.<br>You can also use `completeSmart()` if you'd like to have all available methods suggested. |
