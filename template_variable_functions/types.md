@@ -11,6 +11,29 @@ Suggests a supertype for a Kotlin object expression.
 Casts the right-side expression to the left-side expression type.
 It is used in the iterations group to have a single template for generating both raw-type and Generics Collections.
 
+For this example I'm using the template called `itco` - **Iterate elements of java.util.Collection**:
+
+```java
+for($ITER_TYPE$ $ITER$ = $COLLECTION$.iterator(); $ITER$.hasNext(); ) {
+  $ELEMENT_TYPE$ $VAR$ =$CAST$ $ITER$.next();
+  $END$
+}
+```
+
+in which the `$CAST$` variable is configured with the `castToLeftSideType()` macro.
+
+In the built-in templates it is usually defined with an empty default value, what is used when the variable that is assigned with the current item from
+the iteration has the same type the items in the source collection have.
+
+![castToLeftSideType_same_type](images/castToLeftSideType_same_type.gif)
+
+When the variable assigned with the current item from the iteration has a different type than the items in the collection, then the casting gets
+inserted for the new type.
+
+![castToLeftSideType_different_type](images/castToLeftSideType_different_type.gif)
+
+Having the collection's generic type specified as a wildcard or a more complex one with upper/lower bounds doesn't change the behaviour outlined above.
+
 **Related macro:** [CastToLeftSideTypeMacro](https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/CastToLeftSideTypeMacro.java)
 
 ## className()
@@ -56,13 +79,40 @@ including classes, interfaces, etc.
 
 Returns the default value if the expression is used in the return statement. Uses the errorVariableName parameter if the expression is of the error type.
 
-NOTE: these are variable names and not macros
+NOTE: these are variable names and not macros, and seem to be available only in WebStorm, Rider and GoLand
 
-## descendantClassesEnum(<String>)
+## descendantClassesEnum(String)
 
 Returns the children of the class specified as a string parameter.
 
-NOTE: The official documentation now includes this macro as `descendantClassEnum(String)` but its latest name is `descendantClassesEnum(String)`.
+The returned list (collection of fully qualified names as Strings) includes the children regardless of what types they are: interface, class, abstract class or enum.
+However, the list doesn't include the type the macro is invoked with. 
+
+In case the type, specified as argument for the macro, has no child, then an empty result list is returned. This includes
+enums that by design cannot be inherited from.
+
+Based on a small set of classes the order of elements in the result is hierarchical from the upmost inheritance level to the lowest one,
+while the elements on the same level are ordered somewhat differently. (I haven't been able to figure out the logic. TODO)
+However, they don't seem to be grouped in any way (e.g. interfaces, abstract classes, ...).
+
+![descendantClassesEnum_small_set](images/descendantClassesEnum_small_set.gif)
+
+Based on a bigger set of type, e.g. `descendantClassesEnum("java.util.List")`, the ordering doesn't seem to follow this pattern, but the order of items is always
+the same for multiple subsequent triggers.
+
+![descendantClassesEnum_big_set](images/descendantClassesEnum_big_set.gif)
+
+The scope of search is the current project and 3rd-party libraries as well.
+
+**NOTES:**
+
+- Take into account that using this macro for classes or interfaces that have tens or even hundreds of descendants will have an impact
+on displaying the result list because collecting the information may take a couple of seconds.
+- Although having a filtered result list returned might be possible by embedding this macro into another one that does the filtering,
+collecting the descendants will still take the same amount of time as it would without filtering the end result.
+- The official documentation contains this macro as `descendantClassEnum(String)` but within the IDE it is actually called `descendantClassesEnum(String)`.
+
+For a slightly different behaviour you can check out the [subtypes()](#subtypesstype) macro. 
 
 **Related macro:** [DescendantClassesEnumMacro](https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/DescendantClassesEnumMacro.java)
 
@@ -199,13 +249,45 @@ where `$qualifiedClass$`'s Expression is configured with `qualifiedClassName()`.
 
 ## rightSideType()
 
-Declares the left-side variable with a type of the right-side expression. It is used in the iterations group to have a single template for generating both raw-type and Generics Collections.
+Declares the left-side variable with a type of the right-side expression.
+It is used in the iterations group to have a single template for generating both raw-type and Generics Collections.
+
+For this example I'm using the template called `itco` - **Iterate elements of java.util.Collection**:
+
+```java
+for($ITER_TYPE$ $ITER$ = $COLLECTION$.iterator(); $ITER$.hasNext(); ) {
+  $ELEMENT_TYPE$ $VAR$ =$CAST$ $ITER$.next();
+  $END$
+}
+```
+
+in which the `$ITER_TYPE$` variable is configured with the `rightSideType()` macro.
+
+The generic type of the iterator always matches the source collection's generic type regardless of there is one or not.
+
+When there is none:
+
+![rightSideType_no_generic_type](images/rightSideType_no_generic_type.gif)
+
+When there is one specified:
+
+![rightSideType_with_generic_type](images/castToLeftSideType_same_type.gif))
 
 **Related macro:** [RightSideTypeMacro](https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/RightSideTypeMacro.java)
 
 ## subtypes(sType)
 
 Returns the subtypes of the type passed as the parameter.
+
+The result list in this macro is slightly different than what is returned by [`descendantClassesEnum()`](#descendantclassesenumstring).
+Here:
+- the items in it are actual types with their proper icon and visual representation 
+- you can invoke the quick documentation popup showing their class level documentation comments
+- the type that the macro is invoked with is shown too.
+
+Using the macro on an expression as `subtypes("java.util.List")` yields the following result:
+
+![subtypes](images/subtypes.gif)
 
 **Related macro:** [SubtypesMacro](https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/SubtypesMacro.java)
 
