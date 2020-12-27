@@ -295,6 +295,31 @@ Using the macro on an expression as `subtypes("java.util.List")` yields the foll
 
 Returns the type of the variable passed as the parameter.
 
+The variable here refers to a template variable and not a Java variable.
+
+Given some template variables, e.g. `$TYPE$` and `$VARIABLE$`, you can define the following macro for `$TYPE$`
+
+```
+typeOfVariable(TYPE)
+```
+
+The name of the variable must not include the $ enclosing characters and no single or double-quote characters because the parameter value is not a String value.
+
+One built-in template that demonstrates this nicely is called **lazy - Performs lazy initialization**:
+
+```java
+if ($VAR$ == null) {
+  $VAR$ = new $TYPE$($END$);
+}
+```
+
+Here, `$TYPE$` is configured as `typeOfVariable(VAR)` where VAR will reference an already defined Java variable, from which the type of `$TYPE$` is determined and specified.
+
+![typeOfVariable](images/typeOfVariable.gif)
+
+The variable that you want to get the type of must be an already defined (as in defined before triggering the live template) Java variable. The macro doesn't
+work with variables created with the live template.
+
 **Related macro:** [TypeOfVariableMacro](https://github.com/JetBrains/intellij-community/blob/master/java/java-impl/src/com/intellij/codeInsight/template/macro/TypeOfVariableMacro.java)
 
 ## variableOfType(<type>)
