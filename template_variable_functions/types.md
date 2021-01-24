@@ -1,3 +1,19 @@
+<!--
+Copyright 2021 Tamás Balog
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
 # Types
 
 ## anonymousSuper()
@@ -391,7 +407,7 @@ otherwise the simple name of the type may be more feasible.
 Other macros that return a type can also be specified as the parameter of this macro, so that this one will suggest variable names
 according to the returned type.
 
-One example is [`methodReturnType()`](types.mdturntype), in which case the Expression will be `variableOfType(methodReturnType())` when configured in a template variable.
+One example is [`methodReturnType()`](/types.md#methodreturntype), in which case the Expression will be `variableOfType(methodReturnType())` when configured in a template variable.
 
 In case it doesn't find a variable with the returned type, then the suggestions list will be empty.
 

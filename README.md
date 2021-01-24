@@ -37,3 +37,8 @@ If you find any issues in any of the templates, you have a suggestion or request
 
 If you like my work and the contents of this repo, please consider buying me delicious coffee:
 <a href="https://www.buymeacoffee.com/picimako" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-white.png" alt="Buy Me A Coffee" style="height: 49px !important;width: 150px !important;" ></a>
+
+## License
+
+This project is licensed under the terms of Apache Licence Version 2.0.
+
