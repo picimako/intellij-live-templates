@@ -58,7 +58,7 @@ Returns a concatenation of all the strings passed to the function as parameters.
 
 | Function call | Output |
 |---|---|
-| concat() | [empty string] |
+| concat() | "" (as in empty string) |
 | concat("unicorns ", "are real") | unicorns are real |
 | concat("unicorns ", 3, "are real", 6.0, false) | unicorns are real |
 
